@@ -3,32 +3,32 @@ package com.example.demo.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import com.example.demo.entity.Book;
 import com.example.demo.exception.NoSuchElementException;
 import com.example.demo.repository.BookRepository;
 
-@Service
 public class BookService {
 
 	@Autowired
 	BookRepository bookRepository;
+
 	
-	
-	
+
+	public BookService(BookRepository bookRepository2) {
+		// TODO Auto-generated constructor stub
+	}
+
 	public void addBook(Book book) {
 		
 		bookRepository.save(book);
 	}
-	
-	
-	public List<Book> getBooks(){
+
+	public List<Book> getBooks() {
 		
 		return bookRepository.findAll();
 	}
-	
-	
+
 	public Book getBookById(Long id) throws NoSuchElementException {
 		
 		if(bookRepository.findById(id)!=null)
@@ -37,11 +37,7 @@ public class BookService {
 			throw new NoSuchElementException("no user with id"+id);
 		}
 	}
-	
-	
-	/*public Book getBookById(Long id) throws NoSuchElementException {
-	    return bookRepository.findById(id).orElseThrow(() -> new NoSuchElementException("no such book with id"+id));
-	}*/
+
 	public Book updateBook(Book book) {
 		
 		Book current=bookRepository.getById(book.getId());
@@ -58,12 +54,9 @@ public class BookService {
 		return current;
 		
 	}
-	
+
 	public void deleteBook(Long id) {
 		bookRepository.deleteById(id);
 	}
-	
-	
-	
-	
+
 }

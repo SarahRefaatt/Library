@@ -31,6 +31,23 @@ public class Book {
 	String author;
 	Year publicationYear;
 	String ISBN;
+	
+	
+
+	public Book() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
+	public Book( @jakarta.validation.constraints.NotNull(message = "title must be written") String title,
+			String author,  String iSBN) {
+		super();
+		//this.id=id;
+		this.title = title;
+		this.author = author;
+		ISBN = iSBN;
+	}
+
 	public Long getId() {
 		return id;
 	}

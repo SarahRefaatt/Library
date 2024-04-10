@@ -30,6 +30,23 @@ public class Patron {
 	@OneToMany
 	List<Book> borrowedBooks;
 
+	
+
+	public Patron(String name, String contactInfo) {
+		super();
+		this.name = name;
+		this.contactInfo = contactInfo;
+	}
+
+	
+
+	public Patron() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+
+
 	public Long getId() {
 		return id;
 	}

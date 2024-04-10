@@ -7,5 +7,7 @@ import com.example.demo.entity.Book;
 
 @Repository
 public interface BookRepository extends JpaRepository<Book, Long> {
+    
+    boolean existsByTitle(String title);
 
 }
