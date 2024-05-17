@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.reposetorytest;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
@@ -17,7 +17,7 @@ import com.example.demo.repository.BookRepository;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(connection = EmbeddedDatabaseConnection.H2)
-public class BookRepositoryTest {
+public class BookTest {
 
 	@Autowired
 	BookRepository bookRepository;
