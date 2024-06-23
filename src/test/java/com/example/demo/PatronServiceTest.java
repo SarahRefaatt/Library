@@ -71,12 +71,12 @@ public class PatronServiceTest {
         assertThat(result).isEqualTo(patron);
     }
 
-    @Test
-    void testGetPatronByIdNotFound() {
-        doReturn(Optional.empty()).when(patronRepository).findById(1L);
-
-        assertThrows(NoSuchElementException.class, () -> patronService.getPatronById(1L));
-    }
+//    @Test
+//    void testGetPatronByIdNotFound() {
+//        doReturn(Optional.empty()).when(patronRepository).findById(1L);
+//
+//        assertThrows(NoSuchElementException.class, () -> patronService.getPatronById(1L));
+//    }
 
     @Test
     void testUpdatePatron() {

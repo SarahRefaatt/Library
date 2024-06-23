@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.example.demo.exception.DuplicateException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,12 +18,16 @@ public class BorrowingRecordController {
 	BorrowingRecordService borrowingRecordService;
 	
 	@PostMapping("/book/patron")
-	public void borrow_Book(@Param(value = "bookId") Long bookId,@Param(value = "patronId")Long patronId) {
-	
-		borrowingRecordService.borrowBook(bookId, patronId);
-		
-		
-		
+	public String borrow_Book(@Param(value = "bookId") Long bookId,@Param(value = "patronId")Long patronId)   {
+
+		try {
+			borrowingRecordService.borrowBook(bookId, patronId);
+			return "DONE";
+
+		}catch (Exception ex){
+			return "Error this book is already borrowed";
+		}
+
 	}
 	
 	
@@ -30,9 +35,6 @@ public class BorrowingRecordController {
 	public void return_Book(@Param(value = "bookId") Long bookId,@Param(value = "patronId")Long patronId){
 		
 		borrowingRecordService.returnBook(bookId, patronId);
-		
-		
-		
 		
 	}
 	

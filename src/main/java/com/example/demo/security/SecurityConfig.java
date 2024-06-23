@@ -60,9 +60,11 @@ public class SecurityConfig {
 
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-			http
-			.csrf().disable()
+		HttpSecurity httpSecurity = http
+				.csrf().disable()
 				.authorizeRequests()
+				//.requestMatchers("/api/**").permitAll()
+
 				.requestMatchers("/api/**").permitAll()
 				.requestMatchers("/user/**").permitAll()
 				.requestMatchers("/book/**").permitAll()
@@ -71,7 +73,7 @@ public class SecurityConfig {
 				.requestMatchers("/patron/**").permitAll()
 
 				.anyRequest()
-				
+
 				.authenticated()
 				.and()
 				.sessionManagement()
@@ -79,7 +81,7 @@ public class SecurityConfig {
 				.and()
 				.authenticationProvider(AuthenticationProvider())
 				.addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
-		
+
 		return http.build();
 	}
 	

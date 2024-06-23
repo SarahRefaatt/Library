@@ -46,10 +46,23 @@ public class ApiExceptionHandler {
         
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorMap);
         }
-   
-    
-    
-    
+
+
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ExceptionHandler(value = {DuplicateException.class})
+    public ResponseEntity<Map<String, String>> handleduplicates(DuplicateException ex) {
+
+        Map<String, String> errorMap = new HashMap<>();
+        errorMap.put("error", "this book is already borrowed ");
+        errorMap.put("message", ex.getMessage());
+
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorMap);
+    }
+
+
+
+
+
     @ExceptionHandler(value = {ConstraintViolationException.class})
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
 

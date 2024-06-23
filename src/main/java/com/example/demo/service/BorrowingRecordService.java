@@ -35,8 +35,7 @@ public class BorrowingRecordService {
 		  Book book=bookRepository.findById(bookId).orElseThrow();
 			
 	      Patron patron=patronRepository.findById(patronId).orElseThrow();
-			
-		
+
 		  BorrowingRecord current = new BorrowingRecord();
 		  
 		  current.setBookId(bookId);
@@ -45,21 +44,15 @@ public class BorrowingRecordService {
 		  
 		  if (book!=null && patron!=null) {
 			  
-			  books.add(book);
-			  
-			  
+			  //books.add(book);//remove !!
+			  //books.remove(book);
 			  patron.getBorrowedBooks().add(book);
 			  patronRepository.save(patron);
-		  
+			  //bookRepository.delete(book);
+
+
 		  }
-		  
-		
-		
-		
-		
-		
-		
-		
+
 	}
 	
 	@Transactional
@@ -72,7 +65,9 @@ public class BorrowingRecordService {
 	        for (int i = 0; i < borrowedBooks.size(); i++) {
 	            Book book = borrowedBooks.get(i);
 	            if (book != null && book.getId() != null && book.getId().equals(bookId)) {
-	                borrowedBooks.remove(i);
+	                //borrowedBooks.remove(i);
+					patron.getBorrowedBooks().remove(i);
+
 	                patronRepository.save(patron);
 	                break;
 	            }

@@ -8,6 +8,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 
 @Entity
@@ -19,7 +20,7 @@ public class User{
 	
 
 	@NotNull(message="Must enter your email")
-//	@Email
+	@Email(message = "Invalid email format")
 	String name;
 	String password;
 	

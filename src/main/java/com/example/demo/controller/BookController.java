@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import java.util.List;
 
+import jakarta.validation.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -26,7 +27,7 @@ public class BookController {
 	
 
 	@PostMapping("/add")
-	public void putBook(@RequestBody Book book) {
+	public void putBook(@RequestBody Book book)  throws ConstraintViolationException {
 
 		
 		bookService.addBook(book);
@@ -47,7 +48,7 @@ public class BookController {
 	}
 	
 	@PutMapping("/update")
-	public Book update_Book(@RequestBody Book book) {
+	public Book update_Book(@RequestBody Book book) throws ConstraintViolationException {
 		return bookService.updateBook(book);
 	
 		

@@ -2,6 +2,8 @@ package com.example.demo.controller;
 
 import java.util.List;
 
+import com.example.demo.exception.NoSuchElementException;
+import jakarta.validation.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -25,7 +27,7 @@ public class PatronController {
 	
 
 	@PostMapping("/add")
-	public void putPatron(@RequestBody Patron patron) {
+	public void putPatron(@RequestBody Patron patron) throws ConstraintViolationException {
 
 		
 		patronService.addPatron(patron);
@@ -39,13 +41,13 @@ public class PatronController {
 	
 	
 	@GetMapping("/get_id")
-	public Patron findPatronById(@Param(value = "id") Long id) {
+	public Patron findPatronById(@Param(value = "id") Long id) throws NoSuchElementException {
 		
 		return patronService.getPatronById(id);
 	}
 	
 	@PutMapping("/update")
-	public Patron update_Patron(@RequestBody Patron patron) {
+	public Patron update_Patron(@RequestBody Patron patron) throws ConstraintViolationException{
 		return patronService.updatePatron(patron);
 	
 		
